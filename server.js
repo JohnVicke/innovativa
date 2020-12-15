@@ -1,10 +1,10 @@
-const express = require("express");
-const morgan = require("morgan");
-const dotenv = require("dotenv");
-const axios = require("axios");
-const cors = require("cors");
+import express from "express";
+import morgan from "morgan";
+import { config } from "dotenv";
+import { get } from "axios";
+import cors from "cors";
 
-dotenv.config();
+config();
 
 const app = express();
 
@@ -12,18 +12,18 @@ const app = express();
  * DARESAY API:
  * https://daresay-dev.eu-gb.cf.appdomain.cloud/innovativa/SENSOR/FROM/TO/NO/KEY
  */
-
-const testLoraSensor = "A81758FFFE03BC34";
+const sensor = "A81758FFFE03BC34";
 
 app.use(cors());
 app.use(morgan("dev"));
 
+//  https://daresay-dev.eu-gb.cf.appdomain.cloud/innovativa/A81758FFFE03BC34/2020-11-01/2020-11-10/1/139kTnm10ksR
+
 app.get("/test", async (_, res) => {
   try {
-    const r = await axios.get(
-      `https://daresay-dev.eu-gb.cf.appdomain.cloud/innovativa/${testLoraSensor}/2020-11-01/2020-11-10/3/${process.env.DARESAY_API_KEY}`
+    const r = await get(
+      `https://daresay-dev.eu-gb.cf.appdomain.cloud/innovativa/${sensor}/2020-11-18/2020-11-23/10/${process.env.DARESAY_API_KEY}`
     );
-    console.log(r.data);
     return res.json({ result: r.data });
   } catch (e) {
     return res.json({ error: e });
@@ -33,5 +33,5 @@ app.get("/test", async (_, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`app listening on port ${PORT}`);
+  console.log(`server listening on port ${PORT}`);
 });
