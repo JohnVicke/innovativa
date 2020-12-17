@@ -6,6 +6,10 @@ const popularTimesSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    displayname: {
+      type: String,
+      required: true,
+    },
     floor: {
       type: Number,
       required: true,

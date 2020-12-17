@@ -1,7 +1,8 @@
 {
-  "place": "Naturvetarhuset",
+  "place": "naturvetarhuset",
   "floor": 1,
   "currentpop": 8,
+  "displayname": "Naturvetarhuset",
   "populartimes": [
     {
       "name": "Monday",
