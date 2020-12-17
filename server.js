@@ -3,6 +3,8 @@ import morgan from "morgan";
 import { config } from "dotenv";
 import { get } from "axios";
 import cors from "cors";
+
+import { normalize, convertTime } from "./utils/utils";
 import Parser from "./utils/parser";
 import mondayData from "./misc/rawdata_mondays.json";
 
@@ -66,15 +68,6 @@ const getAllUrls = (from, to) => {
   return parser.sensorInfo.map((sensor) => getUrl({ sensor: sensor.sensorId, from: from, to: to, nr: 1000 }));
 };
 
-// Put this in utils
-const convertTime = (t) => {
-  const z = t.getTimezoneOffset() * 60 * 1000;
-  const tLocal = t - z;
-  const dateLocal = new Date(tLocal);
-  const iso = dateLocal.toISOString();
-  return iso.slice(0, 19);
-};
-
 /**
  * do while date is less than todays date:
  *    request data from sensor
@@ -85,49 +78,61 @@ const convertTime = (t) => {
  */
 
 const getStartDate = (day) => {
-  let dayDate = 6;
-  switch (req.params.day) {
+  let _day = 6;
+  switch (day) {
+    case "monday": {
+      break;
+    }
     case "tuesday": {
-      dayDate++;
+      _day++;
       break;
     }
     case "wednesday": {
-      dayDate += 2;
+      _day += 2;
       break;
     }
     case "thursday": {
-      dayDate += 3;
+      _day += 3;
       break;
     }
     case "friday": {
-      dayDate += 4;
+      _day += 4;
       break;
     }
     case "saturday": {
-      dayDate += 5;
+      _day += 5;
       break;
     }
     case "sunday": {
-      dayDate += 6;
+      _day += 6;
       break;
     }
+    default: {
+      _day = undefined;
+    }
   }
-  return dayDate;
+  return _day;
 };
 
-app.get("/api/:day", async (req, res) => {
+app.get("/api/generate_popular/:day", async (req, res) => {
   // This solution will only work when using data from THIS year
-  const startDayDate = getStartDate(req.params.day.toLowerCase());
-
-  const start = new Date(`2020-01-${startDayDate}T07:00`);
-  const end = new Date(`2020-01-${startDayDate}T23:00`);
+  let day = getStartDate(req.params.day.toLowerCase());
+  if (!day) res.json({ success: false, error: "Day entered not valid format" });
+  if (day < 10) {
+    day = "0" + day.toString();
+  }
+  console.log(day);
+  const start = new Date(`2020-01-${day}T07:00`);
+  const end = new Date(`2020-01-${day}T23:00`);
   const today = new Date();
   const output = [];
-  let i = 0;
+
+  let i = 0; // debugging to make sure i dont overload API
+
   do {
-    const r = getAllUrls(convertTime(start), convertTime(end));
+    const urls = getAllUrls(convertTime(start), convertTime(end));
     try {
-      const data = await fetchData(r[0]);
+      const data = await fetchData(urls[0]);
       const parsedData = parser.parseDay(data);
       output.push({
         startTime: convertTime(start),
@@ -139,17 +144,11 @@ app.get("/api/:day", async (req, res) => {
       end.setDate(end.getDate() + 7);
       console.log(`iterations: ${i++}`);
     } catch (e) {
-      console.log(e);
+      return res.json({ error: e });
     }
-  } while (start < today);
+  } while (false);
   return res.json(output);
 });
-
-// TODO: Move to utils
-const normalize = (val, max, min) => {
-  if (max - min === 0) return 1;
-  return ((val - min) / (max - min)) * 10;
-};
 
 app.get("/data", (_, res) => {
   const averageTimes = {};
