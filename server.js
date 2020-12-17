@@ -84,9 +84,43 @@ const convertTime = (t) => {
  * Theoretically this should work for all days.
  */
 
-app.get("/mondays", async (_, res) => {
-  const start = new Date("2020-01-06T07:00");
-  const end = new Date("2020-01-06T23:00");
+const getStartDate = (day) => {
+  let dayDate = 6;
+  switch (req.params.day) {
+    case "tuesday": {
+      dayDate++;
+      break;
+    }
+    case "wednesday": {
+      dayDate += 2;
+      break;
+    }
+    case "thursday": {
+      dayDate += 3;
+      break;
+    }
+    case "friday": {
+      dayDate += 4;
+      break;
+    }
+    case "saturday": {
+      dayDate += 5;
+      break;
+    }
+    case "sunday": {
+      dayDate += 6;
+      break;
+    }
+  }
+  return dayDate;
+};
+
+app.get("/api/:day", async (req, res) => {
+  // This solution will only work when using data from THIS year
+  const startDayDate = getStartDate(req.params.day.toLowerCase());
+
+  const start = new Date(`2020-01-${startDayDate}T07:00`);
+  const end = new Date(`2020-01-${startDayDate}T23:00`);
   const today = new Date();
   const output = [];
   let i = 0;
@@ -99,7 +133,7 @@ app.get("/mondays", async (_, res) => {
         startTime: convertTime(start),
         endTime: convertTime(end),
         sensor: parser.sensorInfo[0],
-        data: { day: "monday", times: parsedData },
+        data: { day: req.params.day, times: parsedData },
       });
       start.setDate(start.getDate() + 7);
       end.setDate(end.getDate() + 7);
@@ -112,7 +146,6 @@ app.get("/mondays", async (_, res) => {
 });
 
 // TODO: Move to utils
-//
 const normalize = (val, max, min) => {
   if (max - min === 0) return 1;
   return ((val - min) / (max - min)) * 10;
