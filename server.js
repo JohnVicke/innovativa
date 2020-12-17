@@ -3,6 +3,8 @@ import morgan from "morgan";
 import { config } from "dotenv";
 import { get } from "axios";
 import cors from "cors";
+import Parser from "./utils/parser";
+import fs from "fs";
 
 config();
 
@@ -35,3 +37,6 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`server listening on port ${PORT}`);
 });
+
+const parser = new Parser();
+parser.parseFile(`${__dirname}/placeringar_sensorer.xlsx`);
