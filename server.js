@@ -1,10 +1,10 @@
-import express, { response } from "express";
+import express from "express";
 import morgan from "morgan";
 import { config } from "dotenv";
 import { get } from "axios";
 import cors from "cors";
 
-import { normalize, convertTime } from "./utils/utils";
+import { sleep, normalize, convertTime } from "./utils/utils";
 import Parser from "./utils/parser";
 import mondayData from "./misc/rawdata_mondays.json";
 
@@ -16,6 +16,7 @@ const app = express();
  * DARESAY API:
  * https://daresay-dev.eu-gb.cf.appdomain.cloud/innovativa/SENSOR/FROM/TO/NO/KEY
  */
+
 const sensor = "A81758FFFE03BC34";
 const BASEURL = "https://daresay-dev.eu-gb.cf.appdomain.cloud/innovativa";
 const parser = new Parser();
@@ -23,8 +24,6 @@ parser.parseFile(`${__dirname}/placeringar_sensorer.xlsx`);
 
 app.use(cors());
 app.use(morgan("dev"));
-
-//  https://daresay-dev.eu-gb.cf.appdomain.cloud/innovativa/A81758FFFE03BC34/2020-11-01/2020-11-10/1/139kTnm10ksR
 
 app.get("/test", async (_, res) => {
   try {
@@ -114,6 +113,14 @@ const getStartDate = (day) => {
   return _day;
 };
 
+const injectValuesInBaseUrl = (from, to, nr, url) => {
+  let copy = url;
+  copy = copy.replace(/\:from/, from);
+  copy = copy.replace(/\:to/, to);
+  copy = copy.replace(/\:nr/, nr);
+  return copy;
+};
+
 app.get("/api/generate_popular/:day", async (req, res) => {
   // This solution will only work when using data from THIS year
   let day = getStartDate(req.params.day.toLowerCase());
@@ -121,30 +128,57 @@ app.get("/api/generate_popular/:day", async (req, res) => {
   if (day < 10) {
     day = "0" + day.toString();
   }
-  console.log(day);
+
   const start = new Date(`2020-01-${day}T07:00`);
   const end = new Date(`2020-01-${day}T23:00`);
+  const nr = 1000;
   const today = new Date();
-  const output = [];
+  const output = {};
 
   let i = 0; // debugging to make sure i dont overload API
 
   do {
-    const urls = getAllUrls(convertTime(start), convertTime(end));
     try {
-      const data = await fetchData(urls[0]);
-      const parsedData = parser.parseDay(data);
-      output.push({
-        startTime: convertTime(start),
-        endTime: convertTime(end),
-        sensor: parser.sensorInfo[0],
-        data: { day: req.params.day, times: parsedData },
-      });
+      let url = "";
+      for (const [key, lindell_url] of Object.entries(parser.sensorInfo)) {
+        // Api calls to lindell always return key error 2 so i will ignore this for now
+        if (key === "Lindellhallen") {
+          lindell_url.forEach(async (u) => {
+            url = injectValuesInBaseUrl(convertTime(start), convertTime(end), nr, u["baseurl"]);
+          });
+        } else {
+          for (const [floor, urls] of Object.entries(parser.sensorInfo[key])) {
+            Promise.all(
+              urls.forEach((url, index) => {
+                console.log(`iterations: ${i++}`);
+                setTimeout(async () => {
+                  url = injectValuesInBaseUrl(convertTime(start), convertTime(end), nr, url.baseurl);
+                  const data = await fetchData(url);
+                  try {
+                    const parsedData = parser.parseDay(data);
+                    if (!(key in output)) {
+                      output[key] = {};
+                    }
+                    if (!(floor in output[key])) {
+                      output[key][floor] = [];
+                    }
+                    output[key][floor].push({ data: { day: req.params.day, times: parsedData } });
+                    console.log(output);
+                  } catch (e) {
+                    console.log({ ERROR: e });
+                  }
+                }, index * 4000);
+              })
+            ).then((values) => {
+              console.log(values);
+            });
+          }
+        }
+      }
       start.setDate(start.getDate() + 7);
       end.setDate(end.getDate() + 7);
-      console.log(`iterations: ${i++}`);
     } catch (e) {
-      return res.json({ error: e });
+      console.log(e);
     }
   } while (false);
   return res.json(output);

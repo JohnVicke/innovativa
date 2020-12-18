@@ -1,4 +1,5 @@
 import xlsx from "node-xlsx";
+import { DARESAY_API_KEY, BASEURL } from "../constants";
 
 const places = {
   nv: "Naturvetarhuset",
@@ -41,16 +42,39 @@ class Parser {
     return info;
   }
 
+  getUrl(sensor) {
+    return `${BASEURL}/${sensor}/:from/:to/:nr/${process.env.DARESAY_API_KEY}`;
+  }
+
   parseSensorinfo(sensorInfo) {
     const sensors = [];
+    const sensorMap = {};
     for (let i = 1; i < sensorInfo.data.length; i++) {
+      const sensorId = sensorInfo.data[i][7];
+      const url = this.getUrl(sensorId);
+
       if (sensorInfo.data[i][4] === "ERS") {
         const info = this.getPlaceNameAndFloor(sensorInfo.data[i][5]);
-        const sensorId = sensorInfo.data[i][7];
+        if (info.place === "Lindellhallen") {
+          if (!(info.place in sensorMap)) {
+            sensorMap[info.place] = [];
+          }
+          sensorMap[info.place].push({ baseurl: url });
+        } else if (!(info.place in sensorMap)) {
+          sensorMap[info.place] = {};
+        } else {
+          if (info.floor) {
+            if (!(info.floor in sensorMap[info.place])) {
+              sensorMap[info.place][info.floor] = [];
+            }
+            sensorMap[info.place][info.floor].push({ baseurl: url });
+          }
+        }
+
         sensors.push({ info: info, sensorId: sensorId });
       }
     }
-    this.sensorInfo = sensors;
+    this.sensorInfo = sensorMap;
   }
 
   parseFile(filename) {

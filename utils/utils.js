@@ -11,4 +11,8 @@ const convertTime = (t) => {
   return iso.slice(0, 19);
 };
 
-export { normalize, convertTime };
+const sleep = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+export { normalize, convertTime, sleep };
