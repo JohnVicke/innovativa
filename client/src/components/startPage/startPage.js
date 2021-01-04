@@ -17,6 +17,7 @@ Du kommer vara anonym så du behöver inte vara blyg.
 </div>
         <div className="buttons">
         <NextButton/>
+        hello
         <br/>
    
         <button className="hoppa" type="button">Hoppa över introduktionen</button>
