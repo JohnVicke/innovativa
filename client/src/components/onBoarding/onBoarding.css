@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+}
+
+@font-face {
+    font-family: 'Yeseva One';
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
+}
+
+
+html,
+body {
+  font-family: 'Josefin Sans';
+  background-color: #F7EDE2;
+}
+
+h2{
+    font-family: 'Yeseva One';
+}
+
+
+
+.text{
+    margin: 9%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+
+
+.nasta {
+    background-color: #608F84; 
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    border: none;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 6px;
+    box-shadow: 2px 2px 4px #888888;
+
+  }
+
+  .hoppa{
+    background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    cursor: pointer;
+    
+  }
+  
+
+ .buttons{
+     display: grid;
+     margin-left: 30%;
+     margin-right: 30%;
+     width: 40%;
+ }
+
+ .text p{
+     font-size: 13pt;
+     margin: 0;
+ }
