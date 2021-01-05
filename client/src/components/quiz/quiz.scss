@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+
+.question-root {
+  display: flex;
+  flex-direction: column;
+}
+
+.progress {
+  margin: 2rem 10px;
+}
+
+.quiz-root {
+  margin: 10px;
+  overflow-y: hidden;
+}
+.question-container {
+  font-family: "Josefin Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    min-height: 50px;
+    font-size: 2rem;
+  }
+  h2 {
+    min-height: 50px;
+    font-size: 1.3rem;
+  }
+}
+
+.checkboxgroup {
+  display: inline-block;
+  text-align: center;
+  width: 45%;
+}
+.checkboxgroup label {
+  display: block;
+  font-family: "Josefin Sans";
+}
+
+#radio_1 {
+  height: 72px;
+  width: 72px;
+}
+
+#radio_2 {
+  height: 72px;
+  width: 72px;
+}
+
+#checkboxes {
+  margin-bottom: 15%;
+}
+
+.radio-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  .radio-root {
+    margin: 0 40px;
+  }
+}
+
+.next-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}
