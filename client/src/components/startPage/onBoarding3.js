@@ -1,5 +1,5 @@
 import React from "react";
-import NextButton from "../nextButton/nextButton";
+
 import OnBoarding from "../onBoarding/onBoarding";
 import quiz from "../../assets/quiz.png"
 
@@ -13,12 +13,7 @@ import quiz from "../../assets/quiz.png"
       oss göra kvalificerade rekommendationer för just dig. Om du är ärlig så blir 
       datat mer trovärdigt och hjälper i sin tur fler! Don’t be a buzzkill just do the quiz!"/>
 </div>
-        <div className="buttons">
-        <NextButton/>
-        <br/>
-   
-        <button className="hoppa" type="button">Hoppa över introduktionen</button>
-        </div>
+
         </div>
         </div>
  
