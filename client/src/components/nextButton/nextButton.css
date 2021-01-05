@@ -9,4 +9,5 @@
 button{
     color: #608F84;
     font-family: 'Josefin Sans';
+    cursor: pointer;
 }

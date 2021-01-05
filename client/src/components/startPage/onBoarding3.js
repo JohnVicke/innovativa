@@ -7,7 +7,7 @@ import quiz from "../../assets/quiz.png"
     return (
       <div>
           <div className="outer">
-          <img src= {quiz} alt="Chart" height="250px"></img>
+          <img className ="quizPic" src= {quiz} alt="quiz"></img>
           <div className="text">
       <OnBoarding header="Quiz" bread="Ta vårat specialskräddade quiz, den hjälper 
       oss göra kvalificerade rekommendationer för just dig. Om du är ärlig så blir 
