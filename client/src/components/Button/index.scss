@@ -11,6 +11,11 @@
   cursor: pointer;
   outline: inherit;
   transition: all 0.3s ease-in-out;
+  &.outlined {
+    border: 2px solid #608f84;
+    background: none;
+    color: #608f84;
+  }
   &:disabled {
     opacity: 50%;
     cursor: default;
