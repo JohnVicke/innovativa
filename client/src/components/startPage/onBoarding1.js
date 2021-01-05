@@ -1,5 +1,4 @@
 import React from "react";
-import NextButton from "../nextButton/nextButton";
 import OnBoarding from "../onBoarding/onBoarding";
 //import chart from "../../assets/chart.png"
 import combat from "../../assets/combat.png"
@@ -15,12 +14,7 @@ Om du verkligen måste till campus så se till att du gör vår checklista, ärl
 Du kommer vara anonym så du behöver inte vara blyg.
 "/>
 </div>
-        <div className="buttons">
-        <NextButton/>
-        <br/>
-   
-        <button className="hoppa" type="button">Hoppa över introduktionen</button>
-        </div>
+
         </div>
         </div>
  

@@ -1,5 +1,4 @@
 import React from "react";
-import NextButton from "../nextButton/nextButton";
 import OnBoarding from "../onBoarding/onBoarding";
 import chart from "../../assets/chart.png"
 
@@ -14,12 +13,7 @@ import chart from "../../assets/chart.png"
              en lämplig plats att vistas på. Du kan se utifrån tid och plats hur många som vistas på Universitetet.
 Watch the diagram, trust the diagram"/>
 </div>
-        <div className="buttons">
-        <NextButton/>
-        <br/>
-   
-        <button className="hoppa" type="button">Hoppa över introduktionen</button>
-        </div>
+
         </div>
         </div>
  
