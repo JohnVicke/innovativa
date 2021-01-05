@@ -2,8 +2,18 @@
     font-family: 'Josefin Sans';
     font-style: normal;
     font-weight: 400;
-    src: url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
-}
+    src: url(https://fonts.gstatic.com/s/josefinsans/v16/Qw3PZQNVED7rKGKxtqIqX5E-AVSJrOCfjY46_DjQbMZhLw.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+
+@font-face {
+    font-family: 'Yeseva One';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/yesevaone/v15/OpNJno4ck8vc-xYpwWWxli1VWw.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
 body{
     
     font-family: 'Josefin Sans';
@@ -11,8 +21,15 @@ body{
 .q{
     margin: auto;
     margin-top: 4%;
+    margin-left: 5%;
+    
     width: 90%;
 
+}
+
+.t{
+    text-align: center;
+    margin-top: 40%;
 }
 
 .checkboxgroup {
@@ -25,17 +42,60 @@ body{
     font-family: 'Josefin Sans';
   }
 
-  #radio_1{
-      height: 72px;
-      width: 72px;
-  }
-
-  
-  #radio_2{
-    height: 72px;
+  input[type="radio"] {
+    /* remove standard background appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* create custom radiobutton appearance */
+    display: inline-block;
     width: 72px;
-}
+    height: 72px;
+    padding: 0px;
+    /* background-color only for content */
+    background-clip: content-box;
+    border: none;
+    background-color: #FEF8F2;
+    border-radius: 50%;
+  }
+  
+  /* appearance for checked radiobutton */
+  input[type="radio"]:checked {
+    background-color: #84A59D;
+  }
+  
+  /* optional styles, I'm using this for centering radiobuttons */
+  .flex {
+    display: flex;
+    align-items: center;
+  }
 
 #checkboxes{
     margin-bottom: 15%;
+    text-align: center;
+    margin-top: 40%;
+   
 }
+
+progress[value]{
+    -webkit-appearance: none;
+    appearance: none;
+    height: 9px;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 15%;
+
+}
+progress[value]::-webkit-progress-bar {
+    background-color: #FEF8F2;
+    border-radius: 5px;
+    
+  }
+  .topBar{
+    margin-top: 10%;
+  }
+
+  progress[value]::-webkit-progress-value {
+      background-color: #8FA79D;
+      border-radius: 5px; 
+  }

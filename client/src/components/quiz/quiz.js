@@ -12,16 +12,15 @@ const quiz = ({nr, question})=>(
 <div class="topBar">
 <img src= {chevron} alt="Chart" width="auto"></img>
 </div>
-<div>
-<progress id="file" value="1" max="10"> 1/10 </progress>
+<div class="progress">
+<progress id="file" value={nr} max="10"> {nr}/10 </progress>
 </div>
-<div className="text">
+<div className="t">
+<div>
 <h2>Fråga {nr}<br/></h2>
 </div>
 <div class="qu"><p>{question}</p></div>
-
-    
-
+</div>
 <div id="checkboxes">
   <div class="checkboxgroup">
     <input type="radio" name="radio" id="radio_1" />
