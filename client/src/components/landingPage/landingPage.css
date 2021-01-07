@@ -1,0 +1,30 @@
+html * {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-style: italic;
+}
+
+.wrapper {
+  padding: 32/2px;
+}
+
+.caption {
+  font-family: "Josefin Sans";
+  font-weight: 200;
+  color: #000000;
+  opacity: 60%;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+h1 {
+  font-family: "Yeseva One";
+  font-size: 48px;
+}
+
+b{
+  color: #F28482;
+}

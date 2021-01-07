@@ -1,0 +1,16 @@
+.progress-root {
+  width: 100%;
+  .bar {
+    height: 10px;
+    background-color: #fef8f2;
+    width: 100%;
+    border-radius: 4px;
+    .bar-green {
+      transition: all 0.3s ease-in;
+      height: 10px;
+      width: 0;
+      background-color: #608f84;
+      border-radius: 4px;
+    }
+  }
+}
