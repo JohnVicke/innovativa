@@ -205,19 +205,20 @@ class LandingPage extends React.Component {
     });
   };
 
-
   render() {
     return (
       <div className="wrapper">
         <h3 className="caption">GODMORGON</h3>
         <h1>Virustider</h1>
-        <p>10:00 VANLIGTSVIS <b>HÖG SMITTORISK!</b> I NATURVETARHUSET VÅNING 1</p>
+        <p>
+          10:00 VANLIGTSVIS <b>HÖG SMITTORISK!</b> I NATURVETARHUSET VÅNING 1
+        </p>
         <div className="dd-wrapper">
           <Dropdown title="Välj plats" list={this.state.location} />
           <Dropdown title="Välj våning" list={this.state.location} />
           <Dropdown title="Välj hus" list={this.state.location} />
         </div>
-        <PirGraph data={this.state.location[0]} />
+        <PirGraph data={this.state.location[0]} day={0} />
         <div className="buttons">
           <button className="nasta" type="button">
             Starta quiz
