@@ -229,7 +229,7 @@ const location = [
         times: [
           {
             time: 7,
-            pir: 3.72,
+            pir: 7,
           },
           {
             time: 8,
@@ -306,11 +306,11 @@ const location = [
         times: [
           {
             time: 7,
-            pir: 3.72,
+            pir: 8,
           },
           {
             time: 8,
-            pir: 6.76,
+            pir: 3,
           },
           {
             time: 9,

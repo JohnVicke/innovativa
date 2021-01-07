@@ -101,7 +101,6 @@ class LandingPage extends React.Component {
     const graphData = location
       .filter((item) => item.place === this.state.chosenPlace)
       .filter((item) => item.floor === this.state.chosenFloor);
-    console.log(graphData);
     this.setState({
       graphData: graphData[0],
     });
