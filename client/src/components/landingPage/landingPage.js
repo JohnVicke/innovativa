@@ -1,198 +1,48 @@
 import React from "react";
-import NextButton from "../nextButton/nextButton";
+import _ from "lodash";
 import "../onBoarding/onBoarding.css";
 import "./landingPage.css";
 import Dropdown from "../dropdown/dropdown";
 import PirGraph from "../chart/pirGraph";
+import location from "../landingPage/location";
+
+const week = [
+  "Måndag",
+  "Tisdag",
+  "Onsdag",
+  "Torsdag",
+  "Fredag",
+  "Lördag",
+  "Söndag",
+];
+
+const place = _.map(location, (place, index) => ({
+  id: index,
+  title: place.place,
+  selected: false,
+  key: "place",
+}));
+
+const days = _.map(week, (value, index) => ({
+  id: index,
+  title: value,
+  selected: false,
+  key: "days",
+}));
 
 class LandingPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      location: [
-        {
-          place: "Naturvetarhuset",
-          floor: 3,
-          data: [
-            {
-              dispName: "måndag",
-              abbrv: "mån",
-              name: "monday",
-              times: [
-                {
-                  time: 7,
-                  pir: 3.72,
-                },
-                {
-                  time: 8,
-                  pir: 6.76,
-                },
-                {
-                  time: 9,
-                  pir: 7.54,
-                },
-                {
-                  time: 10,
-                  pir: 8.45,
-                },
-                {
-                  time: 11,
-                  pir: 10.0,
-                },
-                {
-                  time: 12,
-                  pir: 9.49,
-                },
-                {
-                  time: 13,
-                  pir: 7.83,
-                },
-                {
-                  time: 14,
-                  pir: 6.23,
-                },
-                {
-                  time: 15,
-                  pir: 6.23,
-                },
-                {
-                  time: 16,
-                  pir: 4.41,
-                },
-                {
-                  time: 17,
-                  pir: 2.62,
-                },
-                {
-                  time: 18,
-                  pir: 0.86,
-                },
-                {
-                  time: 19,
-                  pir: 0.35,
-                },
-                {
-                  time: 20,
-                  pir: 0.21,
-                },
-                {
-                  time: 21,
-                  pir: 0.03,
-                },
-                {
-                  time: 22,
-                  pir: 0,
-                },
-              ],
-            },
-            {
-              dispName: "tisdag",
-              abbrv: "tis",
-              name: "tuesday",
-              times: {
-                7: "3.72",
-                8: "6.76",
-                9: "7.54",
-                10: "8.45",
-                11: "10.00",
-                12: "9.49",
-                13: "7.83",
-                14: "7.41",
-                15: "6.23",
-                16: "4.41",
-                17: "2.62",
-                18: "0.86",
-                19: "0.35",
-                20: "0.21",
-                21: "0.03",
-                22: "0.00",
-              },
-            },
-          ],
-        },
-        {
-          place: "MIT",
-          floor: 2,
-          data: [
-            {
-              dispName: "måndag",
-              abbrv: "mån",
-              name: "monday",
-              times: {
-                7: "3.72",
-                8: "6.76",
-                9: "7.54",
-                10: "8.45",
-                11: "10.00",
-                12: "9.49",
-                13: "7.83",
-                14: "7.41",
-                15: "6.23",
-                16: "4.41",
-                17: "2.62",
-                18: "0.86",
-                19: "0.35",
-                20: "0.21",
-                21: "0.03",
-                22: "0.00",
-              },
-            },
-            {
-              dispName: "tisdag",
-              abbrv: "tis",
-              name: "tuesday",
-              times: {
-                7: "3.72",
-                8: "6.76",
-                9: "7.54",
-                10: "8.45",
-                11: "10.00",
-                12: "9.49",
-                13: "7.83",
-                14: "7.41",
-                15: "6.23",
-                16: "4.41",
-                17: "2.62",
-                18: "0.86",
-                19: "0.35",
-                20: "0.21",
-                21: "0.03",
-                22: "0.00",
-              },
-            },
-          ],
-        },
-      ],
+      place,
+      floors: [],
+      days,
+      chosenPlace: "",
+      chosenFloor: "",
+      chosenDay: "",
+      graphData: [],
     };
   }
-  componentDidMount() {
-    window.addEventListener("keydown", this.tabKeyPressed);
-    window.addEventListener("mousedown", this.mouseClicked);
-  }
-
-  tabKeyPressed = (e) => {
-    if (e.keyCode === 9) {
-      document.querySelector("body").classList.remove("noFocus");
-      window.removeEventListener("keydown", this.tabKeyPressed);
-      window.addEventListener("mousedown", this.mouseClicked);
-    }
-  };
-
-  mouseClicked = () => {
-    document.querySelector("body").classList.add("noFocus");
-    window.removeEventListener("mousedown", this.mouseClicked);
-    window.addEventListener("keydown", this.tabKeyPressed);
-  };
-
-  toggleItem = (id, key) => {
-    const temp = JSON.parse(JSON.stringify(this.state[key]));
-
-    temp[id].selected = !temp[id].selected;
-
-    this.setState({
-      [key]: temp,
-    });
-  };
 
   resetThenSet = (id, key) => {
     const temp = JSON.parse(JSON.stringify(this.state[key]));
@@ -203,7 +53,60 @@ class LandingPage extends React.Component {
     this.setState({
       [key]: temp,
     });
+
+    if (key === "place") {
+      this.setState({
+        chosenPlace: temp[id].title,
+        chosenFloor: "",
+        chosenDay: "",
+        graphData: [],
+      });
+      this.updateFloors(id, key);
+    } else if (key === "floors") {
+      this.setState({
+        chosenFloor: temp[id].title,
+      });
+      if (this.state.chosenDay !== "") {
+        this.updateGraph();
+      }
+    } else if (key === "days") {
+      this.setState({
+        chosenDay: temp[id].title,
+      });
+      this.updateGraph();
+    }
   };
+
+  updateFloors = (id, key) => {
+    const temp = JSON.parse(JSON.stringify(this.state[key]));
+    const floors = location.filter((item) => item.place === temp[id].title);
+
+    const tempFloors = [];
+    floors.forEach((value, key) => {
+      console.log(value.floor);
+      let floor = {
+        id: key + id,
+        title: value.floor,
+        selected: false,
+        key: "floors",
+      };
+      tempFloors.push(floor);
+    });
+    this.setState({
+      floors: tempFloors,
+    });
+  };
+
+  updateGraph = () => {
+    const graphData = location
+      .filter((item) => item.place === this.state.chosenPlace)
+      .filter((item) => item.floor === this.state.chosenFloor);
+    console.log(graphData);
+    this.setState({
+      graphData: graphData[0],
+    });
+  };
+
   render() {
     return (
       <div className="wrapper">
@@ -213,11 +116,35 @@ class LandingPage extends React.Component {
           10:00 VANLIGTSVIS <b>HÖG SMITTORISK!</b> I NATURVETARHUSET VÅNING 1
         </p>
         <div className="dd-wrapper">
-          <Dropdown title="Välj plats" list={this.state.location} />
-          <Dropdown title="Välj våning" list={this.state.location} />
-          <Dropdown title="Välj hus" list={this.state.location} />
+          <Dropdown
+            title="Välj plats"
+            list={this.state.place}
+            resetThenSet={this.resetThenSet}
+            onChange={this.updateFloors}
+          />
+          {this.state.chosenPlace !== "" && (
+            <Dropdown
+              title="Välj våning"
+              list={this.state.floors}
+              resetThenSet={this.resetThenSet}
+            />
+          )}
+          {this.state.chosenFloor !== "" && (
+            <Dropdown
+              title="Välj dag"
+              list={this.state.days}
+              resetThenSet={this.resetThenSet}
+            />
+          )}
         </div>
-        <PirGraph data={this.state.location[0]} day={0} />
+        {this.state.graphData != 0 && (
+          <PirGraph
+            data={this.state.graphData}
+            day={
+              days.filter((item) => item.title === this.state.chosenDay)[0].id
+            }
+          />
+        )}
         <div className="buttons">
           <button className="nasta" type="button">
             Starta quiz
