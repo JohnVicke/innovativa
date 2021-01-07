@@ -111,6 +111,13 @@ class Dropdown extends Component {
     }
 
     if (tempList.length) {
+      const unique = [];
+      tempList.map((x) =>
+        unique.filter((a) => a.title == x.title).length > 0
+          ? null
+          : unique.push(x)
+      );
+      tempList = unique;
       return tempList.map((item) => (
         <button
           type="button"
