@@ -5,7 +5,7 @@ Given name  | Last name
 ------------- | ------------- 
 Viktor  | Malmedal 
 Alice  | Ljungholm 
-Evelina | Malmqvist
+Evelina | Malmqvistt
 Jacob | Svensson
 
 ## Setup
