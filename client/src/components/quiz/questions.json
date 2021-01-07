@@ -1,0 +1,21 @@
+[
+  {
+    "header": "Har du några av följande symptom?",
+    "body": {
+      "type": "list",
+      "content": ["Hosta", "Feber", "Snuva", "Huvudvärk", "Nedsatt lukt- eller smaksinne", "Muskel eller ledvärk"]
+    }
+  },
+  {
+    "header": "Ska du gå till skolan för att du har något obligatorisk som är schemalagt på plats?",
+    "body": {
+      "type": null
+    }
+  },
+  {
+    "header": "Har du umgåtts eller kommit i kontakt med någon som har Covid-19 de senaste veckorna?",
+    "body": {
+      "type": null
+    }
+  }
+]

@@ -1,0 +1,23 @@
+.custom-btn {
+  background: #608f84;
+  color: #fef8f2;
+  width: 240px;
+  height: 50px;
+  box-shadow: 0px 2px 4px rgba(55, 82, 76, 0.3);
+  border: none;
+  border-radius: 6px;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  transition: all 0.3s ease-in-out;
+  &.outlined {
+    border: 2px solid #608f84;
+    background: none;
+    color: #608f84;
+  }
+  &:disabled {
+    opacity: 50%;
+    cursor: default;
+  }
+}
