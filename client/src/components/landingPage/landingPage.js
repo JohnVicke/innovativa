@@ -204,12 +204,14 @@ class LandingPage extends React.Component {
       [key]: temp,
     });
   };
+
+
   render() {
     return (
       <div className="wrapper">
         <h3 className="caption">GODMORGON</h3>
         <h1>Virustider</h1>
-        <p>10:00 VANLIGTSVIS HÖG SMITTORISK! I NATURVETARHUSET VÅNING 1</p>
+        <p>10:00 VANLIGTSVIS <b>HÖG SMITTORISK!</b> I NATURVETARHUSET VÅNING 1</p>
         <div className="dd-wrapper">
           <Dropdown title="Välj plats" list={this.state.location} />
           <Dropdown title="Välj våning" list={this.state.location} />
