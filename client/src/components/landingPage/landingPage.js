@@ -117,51 +117,50 @@ class LandingPage extends React.Component{
                 ],
              };
             }
-            componentDidMount() {
-                window.addEventListener('keydown', this.tabKeyPressed);
-                window.addEventListener('mousedown', this.mouseClicked);
-              }
-            
-              tabKeyPressed = (e) => {
-                if (e.keyCode === 9) {
-                  document.querySelector('body').classList.remove('noFocus');
-                  window.removeEventListener('keydown', this.tabKeyPressed);
-                  window.addEventListener('mousedown', this.mouseClicked);
-                }
-              }
-            
-              mouseClicked = () => {
-                document.querySelector('body').classList.add('noFocus');
-                window.removeEventListener('mousedown', this.mouseClicked);
-                window.addEventListener('keydown', this.tabKeyPressed);
-              }
-            
-              toggleItem = (id, key) => {
-                const temp = JSON.parse(JSON.stringify(this.state[key]));
-            
-                temp[id].selected = !temp[id].selected;
-            
-                this.setState({
-                  [key]: temp,
-                });
-              }
-            
-              resetThenSet = (id, key) => {
-                const temp = JSON.parse(JSON.stringify(this.state[key]));
-            
-                temp.forEach((item) => item.selected = false);
-                temp[id].selected = true;
-            
-                this.setState({
-                  [key]: temp,
-                });
-              }
+    componentDidMount() {
+        window.addEventListener('keydown', this.tabKeyPressed);
+        window.addEventListener('mousedown', this.mouseClicked);
+    }
+
+    tabKeyPressed = (e) => {
+    if (e.keyCode === 9) {
+        document.querySelector('body').classList.remove('noFocus');
+        window.removeEventListener('keydown', this.tabKeyPressed);
+        window.addEventListener('mousedown', this.mouseClicked);
+    }
+    }
+
+    mouseClicked = () => {
+        document.querySelector('body').classList.add('noFocus');
+        window.removeEventListener('mousedown', this.mouseClicked);
+        window.addEventListener('keydown', this.tabKeyPressed);
+    }
+
+    toggleItem = (id, key) => {
+    const temp = JSON.parse(JSON.stringify(this.state[key]));
+
+    temp[id].selected = !temp[id].selected;
+
+    this.setState({
+        [key]: temp,
+    });
+    }
+
+    resetThenSet = (id, key) => {
+    const temp = JSON.parse(JSON.stringify(this.state[key]));
+
+    temp.forEach((item) => item.selected = false);
+    temp[id].selected = true;
+
+    this.setState({
+        [key]: temp,
+    });
+    }
     render() { 
         return (
         <div className="wrapper">
             <h3 className="caption">GODMORGON</h3>
             <h1>Virustider</h1>
-            <p>10:00 VANLIGTSVIS HÖG SMITTORISK! I NATURVETARHUSET VÅNING 1</p>
             <div className="dd-wrapper">
                 <Dropdown  
                     title="Välj plats"
@@ -176,13 +175,14 @@ class LandingPage extends React.Component{
                     list={this.state.location}
                 />
             </div>
-            <div className="buttons">
+            <p>10:00 VANLIGTSVIS HÖG SMITTORISK! I NATURVETARHUSET VÅNING 1</p>
+            <div className="btn-container">
                 <button className="nasta" type="button">
                     Starta quiz
                 </button>
             </div>
         </div>
-        );
+      );
     }
   };
   

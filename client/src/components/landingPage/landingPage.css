@@ -24,3 +24,8 @@ h1{
     font-family: 'Yeseva One';
     font-size: 48px;
 }
+
+.btn-container{
+    display: flex;
+    justify-content: center;
+}
