@@ -71,7 +71,6 @@ class Dropdown extends Component {
         keyword: "",
       }),
       () => {
-        // eslint-disable-next-line react/destructuring-assignment
         if (this.state.isListOpen && this.searchField.current) {
           this.searchField.current.focus();
           this.setState({

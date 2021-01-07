@@ -85,7 +85,7 @@ class LandingPage extends React.Component {
     floors.forEach((value, key) => {
       console.log(value.floor);
       let floor = {
-        id: key + id,
+        id: key,
         title: value.floor,
         selected: false,
         key: "floors",
