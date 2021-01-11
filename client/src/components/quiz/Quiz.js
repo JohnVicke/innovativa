@@ -28,7 +28,11 @@ const Quiz = () => {
 
   const handleSelected = (label) => {
     if (firstChoice) {
-      setSelected(selected.map((item) => (item.label === label ? { ...item, active: !item.active } : item)));
+      setSelected(
+        selected.map((item) =>
+          item.label === label ? { ...item, active: !item.active } : item
+        )
+      );
       setFirstChoice(false);
       return;
     }
@@ -64,15 +68,29 @@ const Quiz = () => {
             <section className="question-container">
               <h1>Fråga {currQ + 1}</h1>
               <h2>{questions[currQ].header}</h2>
-              <QuestionBody type={questions[currQ].body.type} content={questions[currQ].body.content} />
+              <QuestionBody
+                type={questions[currQ].body.type}
+                content={questions[currQ].body.content}
+              />
             </section>
             <section className="question-bottom">
               <div className="radio-btns">
-                <RadioButton toggle={handleSelected} active={selected[0].active} label="Ja" />
-                <RadioButton toggle={handleSelected} active={selected[1].active} label="Nej" />
+                <RadioButton
+                  toggle={handleSelected}
+                  active={selected[0].active}
+                  label="Ja"
+                />
+                <RadioButton
+                  toggle={handleSelected}
+                  active={selected[1].active}
+                  label="Nej"
+                />
               </div>
               <div className="next-btn">
-                <Button onClick={handleNext} disabled={!selected[0].active && !selected[1].active}>
+                <Button
+                  onClick={handleNext}
+                  disabled={!selected[0].active && !selected[1].active}
+                >
                   Nästa
                 </Button>
               </div>
