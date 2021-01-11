@@ -30,7 +30,7 @@ const location = [
           },
           {
             time: 12,
-            pir: 9.49,
+            pir: 4.5,
           },
           {
             time: 13,

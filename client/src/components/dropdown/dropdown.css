@@ -1,8 +1,9 @@
 .dd-wrapper {
   position: relative;
-  width: 222px;
+  /*width: 222px;*/
   font-size: 1.6rem;
   user-select: none;
+  margin: 0.5rem 0;
 }
 
 .dd-header {
@@ -14,7 +15,7 @@
   color: black;
   border: 1px solid black;
   border-radius: 5px;
-  width: 100%;
+  /*width: 100%;*/
   padding: 8px 10px;
   font-size: 1rem;
   line-height: 2rem;
@@ -80,6 +81,7 @@
   font-weight: normal;
   cursor: default;
 }
+
 .dd-list-item:hover {
   background-color: transparent;
   color: black;
@@ -108,7 +110,15 @@
   overflow-y: hidden;
   padding: 0;
 }
+
 .dd-scroll-list {
   max-height: calc(215px - 40px);
   padding: 10px 0;
+}
+
+label {
+  font-family: Josefin Sans;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #5f5e5e;
 }

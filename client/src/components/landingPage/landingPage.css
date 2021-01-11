@@ -5,10 +5,17 @@ html * {
 
 p {
   font-style: italic;
+  line-height: 20px;
+  font-size: 14px;
+  margin: 32px 0;
+}
+
+p.uppercase {
+  text-transform: uppercase;
 }
 
 .wrapper {
-  padding: 32/2px;
+  padding: 32px 32px 0 32px;
 }
 
 .caption {
@@ -18,13 +25,34 @@ p {
   opacity: 60%;
   letter-spacing: 1px;
   font-size: 14px;
+  margin-top: 16px;
 }
 
 h1 {
   font-family: "Yeseva One";
   font-size: 48px;
+  margin-bottom: 1.5rem;
 }
 
-b{
-  color: #F28482;
+b {
+  color: #f28482;
+}
+
+.dd-flex-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.place {
+  margin-right: 1rem;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+}
+
+.graph-wrapper {
+  margin: 0 auto;
+  width: 90%;
 }

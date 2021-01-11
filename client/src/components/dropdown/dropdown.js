@@ -135,9 +135,11 @@ class Dropdown extends Component {
   render() {
     const { searchable } = this.props;
     const { isListOpen, headerTitle } = this.state;
+    const { label } = this.props;
 
     return (
       <div className="dd-wrapper">
+        <label>{label}</label>
         <button type="button" className="dd-header" onClick={this.toggleList}>
           <div className="dd-header-title">{headerTitle}</div>
           {isListOpen ? (
