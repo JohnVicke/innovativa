@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 
 // Routes
 import popularTimesRoutes from "./routes/PopularTimesRoutes";
+import houseRoutes from "./routes/houseRoutes";
 
 import { sleep, normalize, convertTime } from "./utils/utils";
 import Parser from "./utils/parser";
@@ -27,28 +28,15 @@ const BASEURL = "https://daresay-dev.eu-gb.cf.appdomain.cloud/innovativa";
 const parser = new Parser();
 parser.parseFile(`${__dirname}/placeringar_sensorer.xlsx`);
 
+mongoose.connect(process.env.DB_CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true }, () =>
+  console.log("Connected to database :)")
+);
+
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("dev"));
 
-<<<<<<< HEAD
-=======
-mongoose.connect(process.env.DB_CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true }, () =>
-  console.log("Connected to database 🚀")
-);
-
-//  https://daresay-dev.eu-gb.cf.appdomain.cloud/innovativa/A81758FFFE03BC34/2020-11-01/2020-11-10/1/139kTnm10ksR
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`server listening on port ${PORT}`);
-});
-
-app.use("/api/populartimes/", popularTimesRoutes);
-
->>>>>>> master
 app.get("/test", async (_, res) => {
   try {
     const r = await get(
@@ -59,13 +47,13 @@ app.get("/test", async (_, res) => {
     return res.json({ error: e });
   }
 });
-<<<<<<< HEAD
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(`server listening on port ${PORT}`);
 });
+app.use("/api/house", houseRoutes);
 
 const fetchData = (url) => {
   return get(url)
@@ -75,9 +63,7 @@ const fetchData = (url) => {
         data: res.data,
       };
     })
-    .catch((e) => {
-      return { sucess: false };
-    });
+    .catch((e) => {});
 };
 
 const getAllSensorData = (urls) => {
@@ -237,5 +223,7 @@ app.get("/data", (_, res) => {
 
   res.json({ day: "mondays", sumTimes: sumTimes, averageTimes: averageTimes, normalized: normalizedTimes });
 });
-=======
->>>>>>> master
+
+app.get("/api/house-info/:id", (req, res) => {
+  const id = req.paramas.id;
+});
