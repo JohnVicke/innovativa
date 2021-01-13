@@ -22,7 +22,7 @@ const QuizResult = ({ answers }) => {
     console.log({ ...answers, ans });
     setStartAnim(true);
     setTimeout(() => {
-      history.push("/");
+      history.push("/landing");
     }, 4000);
   };
 
@@ -31,7 +31,8 @@ const QuizResult = ({ answers }) => {
     if (!goToSchool) {
       return (
         <p>
-          Baserat på dina svar rekommenderar vi att du <b>stannar hemma</b> och inte besöker Universitetet
+          Baserat på dina svar rekommenderar vi att du <b>stannar hemma</b> och
+          inte besöker Universitetet
           <br />
           <br />
           För mer information angående Covid-19 pandemin besök{" "}
@@ -58,10 +59,16 @@ const QuizResult = ({ answers }) => {
         <section className="question-bottom">
           <div className="radio-btns"></div>
           <div className="continue-btns">
-            <Button onClick={() => handleContinue({ goesToSchool: true })} outlined>
+            <Button
+              onClick={() => handleContinue({ goesToSchool: true })}
+              outlined
+            >
               Jag går till skolan ändå
             </Button>
-            <Button onClick={() => handleContinue({ goesToSchool: false })} filled>
+            <Button
+              onClick={() => handleContinue({ goesToSchool: false })}
+              filled
+            >
               Jag stannar hemma
             </Button>
           </div>

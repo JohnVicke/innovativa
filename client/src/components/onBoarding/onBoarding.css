@@ -1,46 +1,36 @@
 @font-face {
-    font-family: 'Josefin Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: url(https://fonts.gstatic.com/s/josefinsans/v16/Qw3PZQNVED7rKGKxtqIqX5E-AVSJrOCfjY46_DjQbMZhLw.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-  }
+  font-family: "Josefin Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/josefinsans/v16/Qw3PZQNVED7rKGKxtqIqX5E-AVSJrOCfjY46_DjQbMZhLw.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
 
 /* latin */
-@font-face {
-    font-family: 'Yeseva One';
-    font-style: normal;
-    font-weight: 400;
-    src: url(https://fonts.gstatic.com/s/yesevaone/v15/OpNJno4ck8vc-xYpwWWxli1VWw.woff2) format('woff2');
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+
+@media (min-width: 320px) {
+  html,
+  body {
+    font-family: "Josefin Sans";
+    background-color: #f7ede2;
   }
 
-  @media (min-width:320px)  {
+  h1 {
+    font-family: "Yeseva One";
+  }
 
-
-html,
-body {
-  font-family: 'Josefin Sans';
-  background-color: #F7EDE2;
-}
-
-h1{
-    font-family: 'Yeseva One';
-}
-
-
-
-.text{
+  .text {
     margin: 9%;
     display: flex;
     flex-wrap: wrap;
     align-content: center;
-}
+  }
 
-
-
-.nasta {
-    background-color: #608F84; 
+  .nasta {
+    background-color: #608f84;
     color: white;
     padding: 15px 25px;
     text-align: center;
@@ -49,55 +39,54 @@ h1{
     font-size: 18px;
     border-radius: 6px;
     box-shadow: 2px 2px 4px #888888;
-
   }
 
-  .hoppa{
-    background:none;
-    border:none;
-    margin:0;
-    padding:0;
+  .hoppa {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
     cursor: pointer;
-    
   }
-  
 
- .buttons{
-     display: grid;
-     margin-left: 25%;
-     margin-right: 25%;
-     width: 50%;
- }
+  .buttons {
+    display: grid;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+  }
 
- .text p{
-     font-size: 13pt;
-     margin: 0;
- }
+  .text p {
+    font-size: 13pt;
+    margin: 0;
+    font-style: normal;
+  }
+
+  .quizPic {
+    width: 100%;
+  }
 }
 
-
-@media (min-width:961px) {
-  
-  body{
-    background-color: #F7EDE2;
+@media (min-width: 961px) {
+  body {
+    background-color: #f7ede2;
   }
 
-  .text{
+  .text {
     margin-top: 2%;
     margin-bottom: 2%;
     width: 60%;
     margin-left: auto;
     margin-right: auto;
-    
   }
-  img{
+  img {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 30%;
     margin-top: 2%;
   }
-  .nasta{
+  .nasta {
     margin-top: 10%;
     width: 50%;
     display: block;
