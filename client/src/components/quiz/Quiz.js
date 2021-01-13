@@ -8,8 +8,10 @@ import Button from "../Button/Button";
 import RadioButton from "./RadioButton";
 import ProgressBar from "./ProgressBar";
 import QuizResult from "./QuizResult";
+import { useHistory } from "react-router-dom";
 
 const Quiz = () => {
+  const history = useHistory();
   const [currQ, setCurrQ] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [firstChoice, setFirstChoice] = useState(true);
@@ -55,7 +57,12 @@ const Quiz = () => {
   return (
     <div className="quiz-root">
       <div class="topBar">
-        <img src={chevron} alt="Chart" width="auto"></img>
+        <img
+          src={chevron}
+          alt="Chart"
+          width="auto"
+          onClick={() => history.goBack()}
+        ></img>
       </div>
       {showResult ? (
         <QuizResult answers={answers} />

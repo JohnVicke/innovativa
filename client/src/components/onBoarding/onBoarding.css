@@ -1,70 +1,96 @@
 @font-face {
-    font-family: 'Josefin Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+  font-family: "Josefin Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/josefinsans/v16/Qw3PZQNVED7rKGKxtqIqX5E-AVSJrOCfjY46_DjQbMZhLw.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
 }
 
-@font-face {
-    font-family: 'Yeseva One';
-    font-style: normal;
-    font-weight: 400;
-    src: url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
-}
+/* latin */
 
+@media (min-width: 320px) {
+  html,
+  body {
+    font-family: "Josefin Sans";
+    background-color: #f7ede2;
+  }
 
-html,
-body {
-  font-family: 'Josefin Sans';
-  background-color: #F7EDE2;
-}
+  h1 {
+    font-family: "Yeseva One";
+  }
 
-h2{
-    font-family: 'Yeseva One';
-}
-
-
-
-.text{
+  .text {
     margin: 9%;
     display: flex;
     flex-wrap: wrap;
     align-content: center;
-}
+  }
 
-
-
-.nasta {
-    background-color: #608F84; 
+  .nasta {
+    background-color: #608f84;
     color: white;
-    padding: 15px 32px;
+    padding: 15px 25px;
     text-align: center;
     border: none;
     text-decoration: none;
     font-size: 18px;
     border-radius: 6px;
     box-shadow: 2px 2px 4px #888888;
-
   }
 
-  .hoppa{
-    background:none;
-    border:none;
-    margin:0;
-    padding:0;
+  .hoppa {
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
     cursor: pointer;
-    
   }
-  
 
- .buttons{
-     display: grid;
-     margin-left: 30%;
-     margin-right: 30%;
-     width: 40%;
- }
+  .buttons {
+    display: grid;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+  }
 
- .text p{
-     font-size: 13pt;
-     margin: 0;
- }
+  .text p {
+    font-size: 13pt;
+    margin: 0;
+    font-style: normal;
+  }
+
+  .quizPic {
+    width: 100%;
+  }
+}
+
+@media (min-width: 961px) {
+  body {
+    background-color: #f7ede2;
+  }
+
+  .text {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    margin-top: 2%;
+  }
+  .nasta {
+    margin-top: 10%;
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
