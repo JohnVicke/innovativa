@@ -3,6 +3,9 @@ import { useHistory } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import QuestionBody from "./QuestionBody";
 import "./quiz.scss";
+import {bounce} from 'react-animations';
+import styled, {keyframes} from 'styled-components'
+import corona from "../../assets/corona.png";
 
 const QuizResult = ({ answers }) => {
   const history = useHistory();
@@ -26,6 +29,8 @@ const QuizResult = ({ answers }) => {
     }, 4000);
   };
 
+  const Bounce = styled.div`animation: 2s ${keyframes`${bounce}`} infinite`;
+
   // TODO: Fixa annan text beroende på vad användaren klickat i
   const getRes = () => {
     if (!goToSchool) {
@@ -45,7 +50,9 @@ const QuizResult = ({ answers }) => {
   };
 
   if (startAnim) {
-    return <div className="thanks">tack för din medverkan!</div>;
+
+    return <div className="animation"><Bounce><img className="cornaPic" src={corona} alt="quiz"></img></Bounce>
+    <div className="thanks">tack för din medverkan!</div></div>;
   }
 
   return (
